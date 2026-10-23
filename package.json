@@ -1,0 +1,14 @@
+{
+"name": "kabarnusa",
+"version": "1.0.0",
+"private": true,
+"description": "Sistem otomatis pengambilan berita untuk KabarNusa",
+"type": "module",
+"scripts": {
+"start": "node index.js"
+},
+"dependencies": {
+"@supabase/supabase-js": "^2.57.0",
+"rss-parser": "^3.13.0"
+}
+}
