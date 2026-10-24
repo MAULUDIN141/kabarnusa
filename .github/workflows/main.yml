@@ -1,9 +1,9 @@
 name: Update Berita KabarNusa
 
 on:
-schedule:
-- cron: "0 */6 * * *"
 workflow_dispatch:
+schedule:
+- cron: '0 */6 * * *'
 
 permissions:
 contents: read
@@ -12,18 +12,18 @@ jobs:
 update-news:
 runs-on: ubuntu-latest
 steps:
-- name: Ambil kode dari GitHub
+- name: Checkout repository
 uses: actions/checkout@v4
 
-  - name: Siapkan Node.js
+  - name: Setup Node.js
     uses: actions/setup-node@v4
     with:
-      node-version: 20
+      node-version: '20'
 
-  - name: Instal dependensi
+  - name: Install dependencies
     run: npm install
 
-  - name: Jalankan pembaruan berita
+  - name: Run news updater
     run: node index.js
     env:
       SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
