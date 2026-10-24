@@ -356,11 +356,11 @@ function renderNews() {
 async function loadNews() {
   try {
     if (
-  SUPABASE_URL.includes("https://vdhkphjctycfwvpjzbjl.supabase.co") ||
-  SUPABASE_KEY.includes("sb_publishable_0h3AGOTCUAdR3ecOK2aFJA_b28QdAu9")
+  !SUPABASE_URL.startsWith("https://") ||
+  !SUPABASE_KEY.startsWith("sb_publishable_")
 ) {
-      throw new Error("Alamat Supabase dan publishable key belum diisi.");
-    }
+  throw new Error("URL Supabase atau publishable key tidak valid.");
+  }
 
     const endpoint = SUPABASE_URL.replace(/\/+$/, "") +
       "/rest/v1/news?select=title,summary,source_name,source_url,category,published_at&order=published_at.desc.nullslast&limit=100";
