@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#102b46">
+<meta name="description" content="KabarNusa - Berita Indonesia terkini, aktual, dan terpercaya.">
+<title>KabarNusa — Berita Indonesia</title>
+
+<style>
+:root {
+  --navy: #102b46;
+  --blue: #1769aa;
+  --red: #e63946;
+  --bg: #f3f5f8;
+  --white: #fff;
+  --text: #17202a;
+  --muted: #697586;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+a { color: inherit; text-decoration: none; }
+header {
+  background: var(--navy);
+  color: white;
+}
+.topbar {
+  max-width: 1100px;
+  margin: auto;
+  padding: 20px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+.brand {
+  font-size: 28px;
+  font-weight: 900;
+  letter-spacing: -1px;
+}
+.brand span { color: #ff5964; }
+.tagline { font-size: 12px; color: #d7e3ef; margin-top: 5px; }
+.date { font-size: 12px; color: #d7e3ef; text-align: right; }
+nav {
+  background: #0b2035;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+.nav-inner {
+  max-width: 1100px;
+  margin: auto;
+  display: flex;
+  gap: 25px;
+  padding: 13px 16px;
+}
+nav a { color: white; font-size: 13px; font-weight: bold; }
+nav a:hover { color: #ff737c; }
+.container { max-width: 1100px; margin: auto; padding: 20px 16px; }
+.breaking {
+  background: white;
+  border-radius: 8px;
+  padding: 13px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 20px;
+  font-size: 13px;
+}
+.breaking strong {
+  background: var(--red);
+  color: white;
+  padding: 7px 10px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+.section-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--navy);
+  margin-bottom: 15px;
+}
+.section-title h2 { font-size: 20px; margin: 0 0 10px; }
+.section-title span { color: var(--muted); font-size: 12px; }
+.search-box { margin-bottom: 18px; }
+.search-box input {
+  width: 100%;
+  padding: 13px 15px;
+  border: 1px solid #d5dbe3;
+  border-radius: 8px;
+  font-size: 14px;
+  outline-color: var(--blue);
+}
+.categories {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 15px;
+}
+.category {
+  border: 1px solid #d5dbe3;
+  background: white;
+  border-radius: 30px;
+  padding: 9px 14px;
+  font-size: 12px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.category.active, .category:hover {
+  background: var(--navy);
+  color: white;
+}
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+.card {
+  background: white;
+  border-radius: 9px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px #17202a0b;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.card-content { padding: 15px; display: flex; flex-direction: column; flex: 1; }
+.card-category {
+  color: var(--blue);
+  font-size: 11px;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 9px;
+}
+.card h3 { font-size: 16px; line-height: 1.45; margin: 0 0 10px; }
+.card p { color: var(--muted); font-size: 13px; line-height: 1.6; margin: 0 0 15px; }
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+  font-size: 11px;
+  color: var(--muted);
+}
+.read-link { color: var(--blue); font-weight: bold; }
+.status { text-align: center; padding: 35px 15px; color: var(--muted); }
+.more-wrap { text-align: center; padding: 25px 0; }
+button.more {
+  background: var(--navy);
+  color: white;
+  border: 0;
+  border-radius: 6px;
+  padding: 12px 22px;
+  cursor: pointer;
+}
+footer {
+  background: var(--navy);
+  color: white;
+  padding: 25px 16px;
+  margin-top: 20px;
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.8;
+}
+@media (max-width: 760px) {
+  .news-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .card-content { padding: 12px; }
+  .card h3 { font-size: 14px; }
+  .card p { font-size: 12px; }
+  .brand { font-size: 24px; }
+}
+@media (max-width: 420px) {
+  .news-grid { grid-template-columns: 1fr; }
+  .card h3 { font-size: 16px; }
+}
+</style>
+</head>
+
+<body>
+<header>
+  <div class="topbar">
+    <div>
+      <div class="brand">Kabar<span>Nusa</span></div>
+      <div class="tagline">Informasi Indonesia, setiap hari.</div>
+    </div>
+    <div class="date" id="today"></div>
+  </div>
+  <nav>
+    <div class="nav-inner">
+      <a href="#" data-category="Semua">BERANDA</a>
+      <a href="#" data-category="Nasional">NASIONAL</a>
+      <a href="#" data-category="Politik">POLITIK</a>
+      <a href="#" data-category="Ekonomi">EKONOMI</a>
+      <a href="#" data-category="Teknologi">TEKNOLOGI</a>
+      <a href="#" data-category="Olahraga">OLAHRAGA</a>
+      <a href="#" data-category="Internasional">DUNIA</a>
+    </div>
+  </nav>
+</header>
+
+<main class="container">
+  <div class="breaking">
+    <strong>INFO</strong>
+    <span>Ikuti perkembangan berita terbaru dari berbagai sumber.</span>
+  </div>
+
+  <div class="section-title">
+    <h2>Berita Terkini</h2>
+    <span id="news-count">Memuat berita...</span>
+  </div>
+
+  <div class="search-box">
+    <input id="search" type="search" placeholder="Cari berita yang kamu inginkan...">
+  </div>
+
+  <div class="categories" id="categories">
+    <button class="category active" data-category="Semua">Semua</button>
+    <button class="category" data-category="Nasional">Nasional</button>
+    <button class="category" data-category="Politik">Politik</button>
+    <button class="category" data-category="Ekonomi">Ekonomi</button>
+    <button class="category" data-category="Teknologi">Teknologi</button>
+    <button class="category" data-category="Olahraga">Olahraga</button>
+    <button class="category" data-category="Internasional">Internasional</button>
+    <button class="category" data-category="Hiburan">Hiburan</button>
+  </div>
+
+  <div id="status" class="status">Menghubungkan ke database berita...</div>
+  <div id="news" class="news-grid"></div>
+  <div class="more-wrap">
+    <button id="more" class="more" hidden>Muat berita lainnya</button>
+  </div>
+</main>
+
+<footer>
+  <strong>KabarNusa</strong><br>
+  Berita Indonesia, setiap hari.<br>
+  © <span id="year"></span> KabarNusa.
+</footer>
+
+<script>
+/*
+  Isi dua nilai berikut dari Supabase:
+  Project Settings → API.
+  Gunakan Project URL dan publishable key (sb_publishable_...).
+  Jangan pernah masukkan service_role atau sb_secret key di website.
+*/
+const SUPABASE_URL = "ISI_PROJECT_URL_KAMU";
+const SUPABASE_KEY = "ISI_PUBLISHABLE_KEY_KAMU";
+
+const newsBox = document.getElementById("news");
+const statusBox = document.getElementById("status");
+const searchBox = document.getElementById("search");
+const moreButton = document.getElementById("more");
+const countBox = document.getElementById("news-count");
+
+let allNews = [];
+let selectedCategory = "Semua";
+let shown = 12;
+
+document.getElementById("today").textContent =
+  new Intl.DateTimeFormat("id-ID", {
+    dateStyle: "full",
+    timeZone: "Asia/Jakarta"
+  }).format(new Date());
+
+document.getElementById("year").textContent = new Date().getFullYear();
+
+function escapeHTML(value = "") {
+  return String(value).replace(/[&<>"']/g, char => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;"
+  })[char]);
+}
+
+function formatDate(value) {
+  if (!value) return "Tanggal tidak tersedia";
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "Tanggal tidak tersedia";
+  return new Intl.DateTimeFormat("id-ID", {
+    dateStyle: "medium",
+    timeZone: "Asia/Jakarta"
+  }).format(date);
+}
+
+function renderNews() {
+  const query = searchBox.value.trim().toLowerCase();
+
+  const filtered = allNews.filter(item => {
+    const matchesCategory =
+      selectedCategory === "Semua" ||
+      (item.category || "").toLowerCase() === selectedCategory.toLowerCase();
+
+    const searchable = [
+      item.title, item.summary, item.source_name, item.category
+    ].join(" ").toLowerCase();
+
+    return matchesCategory && searchable.includes(query);
+  });
+
+  countBox.textContent = filtered.length + " berita";
+  newsBox.innerHTML = "";
+
+  if (!filtered.length) {
+    statusBox.hidden = false;
+    statusBox.textContent = allNews.length
+      ? "Tidak ada berita yang cocok dengan pencarian ini."
+      : "Belum ada berita yang bisa ditampilkan.";
+    moreButton.hidden = true;
+    return;
+  }
+
+  statusBox.hidden = true;
+
+  filtered.slice(0, shown).forEach(item => {
+    const article = document.createElement("article");
+    article.className = "card";
+
+    const title = escapeHTML(item.title || "Tanpa judul");
+    const summary = escapeHTML(item.summary || "Baca berita selengkapnya dari sumber asli.");
+    const category = escapeHTML(item.category || "Berita");
+    const source = escapeHTML(item.source_name || "Sumber berita");
+    const date = escapeHTML(formatDate(item.published_at));
+    const url = typeof item.source_url === "string" ? item.source_url : "";
+    const safeUrl = /^https?:\/\//i.test(url) ? url : "";
+
+    article.innerHTML = `
+      <div class="card-content">
+        <div class="card-category">${category}</div>
+        <h3>${title}</h3>
+        <p>${summary}</p>
+        <div class="card-footer">
+          <span>${source} · ${date}</span>
+          ${safeUrl
+            ? `<a class="read-link" href="${escapeHTML(safeUrl)}" target="_blank" rel="noopener noreferrer">Baca ↗</a>`
+            : ""}
+        </div>
+      </div>
+    `;
+    newsBox.appendChild(article);
+  });
+
+  moreButton.hidden = filtered.length <= shown;
+}
+
+async function loadNews() {
+  try {
+    if (
+      SUPABASE_URL.includes("https://vdhkphjctycfwvpjzbjl.supabase.co") ||
+      SUPABASE_KEY.includes("sb_publishable_0h3AGOTCUAdR3ecOK2aFJA_b28QdAu9")
+    ) {
+      throw new Error("Alamat Supabase dan publishable key belum diisi.");
+    }
+
+    const endpoint = SUPABASE_URL.replace(/\/+$/, "") +
+      "/rest/v1/news?select=title,summary,source_name,source_url,category,published_at&order=published_at.desc.nullslast&limit=100";
+
+    const response = await fetch(endpoint, {
+      headers: {
+        "apikey": SUPABASE_KEY,
+        "Authorization": "Bearer " + SUPABASE_KEY
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error("Supabase menolak permintaan (HTTP " + response.status + "). Periksa key dan izin tabel.");
+    }
+
+    allNews = await response.json();
+    renderNews();
+
+    if (allNews.length) {
+      statusBox.hidden = true;
+    }
+  } catch (error) {
+    statusBox.hidden = false;
+    statusBox.textContent = "Berita belum dapat dimuat. " + error.message;
+    countBox.textContent = "Gagal memuat";
+    console.error(error);
+  }
+}
+
+searchBox.addEventListener("input", () => {
+  shown = 12;
+  renderNews();
+});
+
+document.querySelectorAll("[data-category]").forEach(button => {
+  button.addEventListener("click", event => {
+    event.preventDefault();
+    selectedCategory = button.dataset.category;
+    shown = 12;
+
+    document.querySelectorAll(".category").forEach(item => {
+      item.classList.toggle("active", item.dataset.category === selectedCategory);
+    });
+
+    renderNews();
+    document.querySelector(".section-title").scrollIntoView({ behavior: "smooth" });
+  });
+});
+
+moreButton.addEventListener("click", () => {
+  shown += 12;
+  renderNews();
+});
+
+loadNews();
+setInterval(loadNews, 5 * 60 * 1000);
+</script>
+</body>
+  </html>
