@@ -1,19 +1,15 @@
-name: Update Berita Otomatis
-on: schedule: - cron: "0 */6 * * *" workflow_dispatch: push: branches: - main
-jobs: update-news: runs-on: ubuntu-latest
-steps:
-  - name: Ambil kode
-    uses: actions/checkout@v4
-
-  - name: Siapkan Node.js
+name: KabarNusa News Update
+on: workflow_dispatch: schedule: - cron: "0 * * * *"
+jobs: update-news: runs-on: ubuntu-latest steps: - name: Checkout repository uses: actions/checkout@v4
+- name: Setup Node.js
     uses: actions/setup-node@v4
     with:
       node-version: 20
 
-  - name: Instal dependensi
+  - name: Install dependencies
     run: npm install
 
-  - name: Jalankan pembaruan berita
+  - name: Update news
     run: npm start
     env:
       SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
