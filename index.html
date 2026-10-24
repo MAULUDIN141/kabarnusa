@@ -123,13 +123,20 @@ nav a:hover { color: #ff737c; }
   gap: 16px;
 }
 .card {
-  background: white;
-  border-radius: 9px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 2px 8px #17202a0b;
+  box-shadow: var(--shadow);
   display: flex;
   flex-direction: column;
   min-width: 0;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(11, 31, 51, 0.13);
 }
 .card-content { padding: 15px; display: flex; flex-direction: column; flex: 1; }
 .card-category {
