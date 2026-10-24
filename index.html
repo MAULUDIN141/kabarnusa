@@ -354,9 +354,9 @@ function renderNews() {
 async function loadNews() {
   try {
     if (
-      SUPABASE_URL.includes("https://vdhkphjctycfwvpjzbjl.supabase.co") ||
-      SUPABASE_KEY.includes("sb_publishable_0h3AGOTCUAdR3ecOK2aFJA_b28QdAu9")
-    ) {
+  SUPABASE_URL.includes("https://vdhkphjctycfwvpjzbjl.supabase.co") ||
+  SUPABASE_KEY.includes("sb_publishable_0h3AGOTCUAdR3ecOK2aFJA_b28QdAu9")
+) {
       throw new Error("Alamat Supabase dan publishable key belum diisi.");
     }
 
