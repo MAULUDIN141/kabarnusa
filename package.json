@@ -2,7 +2,7 @@
 "name": "kabarnusa",
 "version": "1.0.0",
 "private": true,
-"description": "Sistem otomatis pengambilan dan penyimpanan berita KabarNusa",
+"description": "Sistem otomatis pengambilan dan penyimpanan berita",
 "type": "module",
 "scripts": {
 "start": "node index.js",
